@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Vista armada por secciones</title>
+<style>
+   /* ==========================
+   Layout general
+========================== */
+.layout {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 250px 1fr;    /* left fijo, main ocupa el resto */
+  grid-template-rows: auto 1fr auto;   /* header arriba, contenido al centro, footer abajo */
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "footer  footer";
+}
+
+/* Header */
+header {
+  grid-area: header;
+  background: #0b1830;
+}
+.header-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Sidebar (left) */
+aside {
+  grid-area: sidebar;
+  background: #0b1830;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.left-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Main (formulario centrado) */
+main {
+  grid-area: main;
+  background: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Footer */
+footer {
+  grid-area: footer;
+  background: #0b1830;
+}
+.footer-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ==========================
+   Variables principales
+========================== */
+:root {
+  --form-w: 800px;         /* ancho máximo del contenedor */
+  --color-bg: #eef3fa;     /* fondo principal */
+  --color-card: #ffffff;   /* fondo tarjeta */
+  --color-primary: #1677ff;/* azul principal */
+  --color-border: #d6d6d6; /* gris de bordes */
+  --radius: 12px;          /* radios */
+  --shadow: 0 12px 30px rgba(0,0,0,.15);
+  --transition: all .2s ease-in-out;
+}
+
+/* ==========================
+   Reset básico
+========================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--color-bg);
+  color: #222;
+}
+
+/* ==========================
+   Contenedor (el “cuadro”)
+========================== */
+.form {
+  width: min(var(--form-w), 95%);
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 28px 24px;
+}
+
+/* Títulos */
+.form h2 {
+  text-align: center;
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.form p.subtitle {
+  text-align: center;
+  margin: 0 0 18px;
+  font-size: 15px;
+  color: #444;
+}
+
+/* Lista de enlaces */
+.links {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none; /* quitamos bullets nativos y creamos propios */
+}
+
+.links li {
+  margin: 10px 0;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: #fafbfe;
+  transition: var(--transition);
+}
+
+.links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: #0b1830;
+  font-weight: 600;
+}
+
+.links li::marker { content: ""; }
+
+.links li:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  border-color: #cfd6e6;
+  background: #f4f7ff;
+}
+
+.link-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  flex: 0 0 10px;
+}
+
+/* Responsivo */
+@media (max-width: 700px) {
+  .form { padding: 22px; }
+  .form h2 { font-size: 20px; }
+}
+</style>
+</head>
+
+<body>
+  <div class="layout">
+    <header>
+      <img class="header-img" src="img/top.png" alt="Top" />
+    </header>
+
+    <aside>
+      <img class="left-img" src="img/left.png" alt="Lateral izquierdo" />
+    </aside>
+
+    <main>
+      <div class="content-frame">
+        <div class="form-slot">
+          <div class="form" role="region" aria-labelledby="titulo-comunicaciones">
+            <h2 id="titulo-comunicaciones">Solicitud de servicios de la Dirección de Comunicaciones</h2>
+            <p class="subtitle">Brief General de comunicaciones</p>
+
+            <ul class="links">
+              <li>
+                <a href="https://rafa230423.github.io/Formulario/" target="_blank" rel="noopener">
+                  <span class="link-dot" aria-hidden="true"></span>
+                  <span>Eventos y protocolo</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://rafa230423.github.io/Formulario/" target="_blank" rel="noopener">
+                  <span class="link-dot" aria-hidden="true"></span>
+                  <span>Comunicación Digital</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://rafa230423.github.io/Formulario/" target="_blank" rel="noopener">
+                  <span class="link-dot" aria-hidden="true"></span>
+                  <span>Comunicación Interna</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://rafa230423.github.io/Formulario/" target="_blank" rel="noopener">
+                  <span class="link-dot" aria-hidden="true"></span>
+                  <span>Prensa</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://rafa230423.github.io/Formulario/" target="_blank" rel="noopener">
+                  <span class="link-dot" aria-hidden="true"></span>
+                  <span>Producción audiovisual</span>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <img class="footer-img" src="img/footer.png" alt="Footer" />
+    </footer>
+  </div>
+</body>
+</html>
